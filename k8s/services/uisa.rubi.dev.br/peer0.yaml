@@ -1,0 +1,23 @@
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: peer0-uisa-rubi-dev-br
+  namespace: rubi-dev-br
+spec:
+  type: ClusterIP
+  selector:
+    component: "peer0.uisa.rubi.dev.br"
+  ports:
+  - name: "listen"
+    port: 7051
+    protocol: TCP
+    targetPort: 7051
+  - name: "chaincode-listen"
+    port: 7052
+    protocol: TCP
+    targetPort: 7052
+  - name: "operations"
+    port: 9443
+    protocol: TCP
+    targetPort: 9443

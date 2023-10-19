@@ -1,0 +1,11 @@
+resources:
+  - services/ordering-service.yaml
+  - services/uisa.rubi.dev.br/peer0.yaml
+  - services/assovale.rubi.dev.br/peer0.yaml
+  - services/chaincodes/demo.yaml
+  - statefulsets/ordering-service.yaml
+  - statefulsets/uisa.rubi.dev.br/peer0.yaml
+  - statefulsets/assovale.rubi.dev.br/peer0.yaml
+  - deployments/chaincodes/demo.yaml
+  - deployments/uisa.rubi.dev.br/cli.yaml
+  - deployments/assovale.rubi.dev.br/cli.yaml

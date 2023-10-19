@@ -1,0 +1,34 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: orderer0-rubi-dev-br
+  namespace: rubi-dev-br
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "0" # no limit
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true" # orderer should teminate the ssl traffic
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: orderer0.rubi.dev.br
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: orderer0-rubi-dev-br
+                port:
+                  name: listen
+    - host: operations.orderer0.rubi.dev.br
+      http:
+        paths:
+          - path: /healthz
+            pathType: Exact
+            backend:
+              service:
+                name: orderer0-rubi-dev-br
+                port:
+                  name: operations
+  tls:
+    - hosts:
+        - orderer0.rubi.dev.br

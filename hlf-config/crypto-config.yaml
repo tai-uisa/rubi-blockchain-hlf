@@ -1,0 +1,58 @@
+OrdererOrgs:
+  - Name: Orderer
+    Domain: rubi.dev.br
+    EnableNodeOUs: true
+    Specs:
+      - Hostname: orderer0
+        SANS:
+          - localhost
+          - 127.0.0.1
+          - ::1
+          - orderer0-rubi-dev-br
+          - orderer0-rubi-dev-br.rubi-dev-br.svc.cluster.local
+          - orderer0.rubi.dev.br
+      - Hostname: orderer1
+        SANS:
+          - localhost
+          - 127.0.0.1
+          - ::1
+          - orderer1-rubi-dev-br
+          - orderer1-rubi-dev-br.rubi-dev-br.svc.cluster.local
+          - orderer1.rubi.dev.br
+      - Hostname: orderer2
+        SANS:
+          - localhost
+          - 127.0.0.1
+          - ::1
+          - orderer2-rubi-dev-br
+          - orderer2-rubi-dev-br.rubi-dev-br.svc.cluster.local
+          - orderer2.rubi.dev.br
+PeerOrgs:
+  - Name: Uisa
+    Domain: uisa.rubi.dev.br
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+      SANS:
+        - localhost
+        - 127.0.0.1
+        - ::1
+        - "{{.Hostname}}-uisa-rubi-dev-br"
+        - "{{.Hostname}}-uisa-rubi-dev-br.rubi-dev-br.svc.cluster.local"
+        - "{{.Hostname}}.uisa.rubi.dev.br"
+    Users:
+      Count: 1
+  - Name: Assovale
+    Domain: assovale.rubi.dev.br
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+      SANS:
+        - localhost
+        - 127.0.0.1
+        - ::1
+        - "{{.Hostname}}-assovale-rubi-dev-br"
+        - "{{.Hostname}}-assovale-rubi-dev-br.rubi-dev-br.svc.cluster.local"
+        - "{{.Hostname}}.assovale.rubi.dev.br"
+    Users:
+      Count: 1

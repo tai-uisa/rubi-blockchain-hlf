@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "cli.peer0.uisa.rubi.dev.br"
+  namespace: rubi-dev-br
+  labels:
+    component: "cli.peer0.uisa.rubi.dev.br"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: "cli.peer0.uisa.rubi.dev.br"
+  template:
+    metadata:
+      labels:
+        component: "cli.peer0.uisa.rubi.dev.br"
+    spec:
+      containers:
+        - name: cli-peer0-uisa-rubi-dev-br
+          image: hyperledger/fabric-tools:2.4
+          imagePullPolicy: IfNotPresent
+          workingDir: /etc/hyperledger/fabric/
+          tty: true
+          stdin: true
+          env:
+            - name: FABRIC_LOGGING_SPEC
+              value: debug
+            - name: CHANNEL_NAME
+              value: channelall
+            - name: CORE_PEER_ADDRESS
+              value: peer0-uisa-rubi-dev-br:7051
+            - name: CORE_PEER_LOCALMSPID
+              value: UisaMSP
+            - name: CORE_PEER_TLS_ENABLED
+              value: "true"
+            - name: CORE_PEER_TLS_ROOTCERT_FILE
+              value: /etc/hyperledger/fabric/crypto/peerOrganizations/uisa.rubi.dev.br/peers/peer0.uisa.rubi.dev.br/tls/ca.crt
+            - name: CORE_PEER_MSPCONFIGPATH
+              value: /etc/hyperledger/fabric/crypto/peerOrganizations/uisa.rubi.dev.br/users/Admin@uisa.rubi.dev.br/msp
+            - name: ORDERER_CA
+              value: /etc/hyperledger/fabric/crypto/ordererOrganizations/rubi.dev.br/orderers/orderer0.rubi.dev.br/msp/tlscacerts/tlsca.rubi.dev.br-cert.pem
+          volumeMounts:
+            - name: chaincode-package
+              mountPath: /etc/hyperledger/fabric/chaincodes
+            - name: hlf-artifacts
+              mountPath: /etc/hyperledger/fabric/artifacts
+            - name: hlf-crypto-config
+              mountPath: /etc/hyperledger/fabric/crypto
+      volumes:
+        - name: chaincode-package
+          persistentVolumeClaim:
+            claimName: chaincode-package
+        - name: hlf-artifacts
+          persistentVolumeClaim:
+            claimName: hlf-artifacts
+        - name: hlf-crypto-config
+          persistentVolumeClaim:
+            claimName: hlf-crypto-config

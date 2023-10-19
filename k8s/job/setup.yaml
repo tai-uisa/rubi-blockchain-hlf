@@ -12,13 +12,11 @@ spec:
         - name: git-clone
           image: alpine/git
           imagePullPolicy: IfNotPresent
-          env:
-            - name: GIT_AUTH
-              value: "devchacal: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"
           args:
             - clone
             - --single-branch
-            - https://devchacal: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@github.com/tai-uisa/rubi-blockchain-hlf.git
+            - --
+            - https://github.com/tai-uisa/rubi-blockchain-hlf.git
             - /repo
           securityContext:
             runAsUser: 1

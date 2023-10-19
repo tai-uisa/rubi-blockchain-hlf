@@ -10,5 +10,5 @@ spec:
   accessModes:
     - ReadWriteOnce
   nfs:
-    path: /mnt/nfs_share/stage
+    path: /stage
     server: 10.32.208.2

@@ -3,12 +3,10 @@ kind: PersistentVolume
 metadata:
   name: local-volume
 spec:
-  storageClassName: standard
   capacity:
-    storage: 30Gi
-  volumeMode: Filesystem
+    storage: 100Gi
   accessModes:
-    - ReadWriteOnce
+  - ReadWriteMany
   nfs:
     path: /stage
     server: 10.32.208.2

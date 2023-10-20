@@ -3,10 +3,12 @@ kind: PersistentVolume
 metadata:
   name: local-volume
 spec:
+  storageClassName: standard
   capacity:
-    storage: 1Gi
+    storage: 50Gi
+  volumeMode: Filesystem
   accessModes:
-    - ReadOnlyMany
-  gcePersistentDisk:
-    pdName: rubi-nfs-disk
-    fsType: ext4
+    - ReadWriteOnce
+  nfs:
+    path: /rubiNFS/stage
+    server: 10.32.208.2

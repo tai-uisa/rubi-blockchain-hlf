@@ -12,6 +12,13 @@ spec:
         - name: git-clone
           image: alpine/git
           imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "0.5"
+            limits:
+              memory: "1Gi"
+              cpu: "1"
           args:
             - clone
             - --single-branch

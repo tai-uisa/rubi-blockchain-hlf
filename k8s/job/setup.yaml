@@ -15,10 +15,10 @@ spec:
           resources:
             requests:
               memory: "512Mi"
-              cpu: "0.5"
+              cpu: "500m"
             limits:
-              memory: "1Gi"
-              cpu: "1"
+              memory: "512Mi"
+              cpu: "500m"
           args:
             - clone
             - --single-branch
@@ -39,10 +39,10 @@ spec:
         resources:
           requests:
             memory: "512Mi"
-            cpu: "0.5"
+            cpu: "500m"
           limits:
-            memory: "1Gi"
-            cpu: "1"
+            memory: "512Mi"
+            cpu: "500m"
         workingDir: /repo/hlf-config
         command: ["/bin/sh",  "-c"]
         args:
